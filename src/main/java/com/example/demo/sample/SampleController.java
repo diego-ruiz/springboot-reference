@@ -1,5 +1,6 @@
 package com.example.demo.sample;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,11 @@ public class SampleController {
     @GetMapping("/employees")
     List<Employee> all() {
         return employeeService.getEmployees();
+    }
+
+    @GetMapping("/employees/pageable")
+    Page<Employee> employees(@RequestParam int page, @RequestParam int size){
+        return employeeService.getEmployeesPageable(page, size);
     }
 
     @GetMapping("/engineers")
