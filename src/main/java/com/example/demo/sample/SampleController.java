@@ -8,19 +8,29 @@ import java.util.List;
 @RestController
 public class SampleController {
 
-    private final EmployeeRepository repository;
+    private final EmployeeService employeeService;
 
-    SampleController(EmployeeRepository repository) {
-        this.repository = repository;
+    SampleController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/employees")
     List<Employee> all() {
-        return repository.findAll();
+        return employeeService.getEmployees();
+    }
+
+    @GetMapping("/engineers")
+    List<Employee> allEngineers() {
+        return employeeService.getEngineers();
     }
 
     @PostMapping("/employees")
     Employee newEmployee(@RequestBody Employee newEmployee) {
-        return repository.save(newEmployee);
+        return employeeService.save(newEmployee);
+    }
+
+    @GetMapping("/test")
+    String returnTest() {
+        return "hellossss";
     }
 }
