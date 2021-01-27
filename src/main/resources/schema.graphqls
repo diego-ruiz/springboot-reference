@@ -1,0 +1,11 @@
+type Query {
+  hello: String!
+  getEmployees(count: Int, offset: Int): [Employee]!
+}
+
+type Employee {
+  id: ID!
+  name: String!
+  role: String!
+}
+
